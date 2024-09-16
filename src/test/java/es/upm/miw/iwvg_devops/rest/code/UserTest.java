@@ -2,6 +2,7 @@ package es.upm.miw.iwvg_devops.rest.code;
 
 import es.upm.miw.iwvg_devops.code.Fraction;
 import es.upm.miw.iwvg_devops.code.User;
+import es.upm.miw.iwvg_devops.code.UsersDatabase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -36,6 +37,11 @@ public class UserTest {
     @Test
     void testInitials() {
         assertEquals("L.", user.initials());
+    }
+
+    @Test
+    void testFindUserNameBySomeImproperFraction() {
+        assertEquals(List.of("Oscar", "Ana", "Paula"), new User().findUserNameBySomeImproperFraction());
     }
 
     @Test
