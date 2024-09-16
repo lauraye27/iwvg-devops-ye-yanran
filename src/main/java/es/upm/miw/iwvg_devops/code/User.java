@@ -2,6 +2,8 @@ package es.upm.miw.iwvg_devops.code;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class User {
     private String id;
@@ -58,6 +60,15 @@ public class User {
 
     public String initials() {
         return this.name.substring(0, 1) + ".";
+    }
+
+    public List<String> findUserNameBySomeImproperFraction() {
+        return new UsersDatabase().findAll()
+                .filter(user -> user.getFractions().stream()
+                        .anyMatch(Fraction::isImproper))
+                .map(User::getName)
+                .distinct()
+                .collect(Collectors.toList());
     }
 
     @Override
