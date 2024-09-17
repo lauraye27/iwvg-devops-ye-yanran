@@ -2,6 +2,7 @@ package es.upm.miw.iwvg_devops.rest.code;
 
 import es.upm.miw.iwvg_devops.code.Fraction;
 import org.junit.jupiter.api.Test;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -67,5 +68,10 @@ public class FractionTest {
         Fraction fraction2 = new Fraction(1,2);
 
         assertEquals(1.0, fraction.divide(fraction2), 10e-5);
+    }
+
+    @Test
+    void testFindDecimalFractionByUserName() {
+        assertEquals(List.of(0.0, -0.0, 0.0), new Fraction().findDecimalFractionByUserName("Antonio"));
     }
 }
