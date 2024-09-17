@@ -71,6 +71,14 @@ public class User {
                 .collect(Collectors.toList());
     }
 
+    public List<String> findUserIdBySomeProperFraction() {
+        return new UsersDatabase().findAll()
+                .filter(user -> user.getFractions().stream()
+                        .anyMatch(Fraction::isProper))
+                .map(User::getId)
+                .collect(Collectors.toList());
+    }
+
     @Override
     public String toString() {
         return "User{" +
