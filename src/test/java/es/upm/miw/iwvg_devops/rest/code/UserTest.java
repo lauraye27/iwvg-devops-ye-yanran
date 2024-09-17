@@ -45,6 +45,11 @@ public class UserTest {
     }
 
     @Test
+    void testFindUserIdBySomeProperFraction() {
+        assertEquals(List.of("1", "2", "3", "5"), new User().findUserIdBySomeProperFraction());
+    }
+
+    @Test
     void testToString() {
         Fraction fraction = new Fraction(1,2);
         user.addFraction(fraction);
@@ -52,5 +57,4 @@ public class UserTest {
 
         assertEquals(expected, user.toString());
     }
-
 }
