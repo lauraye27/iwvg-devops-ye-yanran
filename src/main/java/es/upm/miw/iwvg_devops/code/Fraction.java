@@ -1,5 +1,8 @@
 package es.upm.miw.iwvg_devops.code;
 
+import java.util.List;
+import java.util.stream.Stream;
+
 public class Fraction {
     private int numerator;
     private int denominator;
@@ -71,6 +74,14 @@ public class Fraction {
         double resDenominator = this.denominator * fraction2.getNumerator();
         res = resNumerator / resDenominator;
         return res;
+    }
+
+    public List<Double> findDecimalFractionByUserName(String name) {
+        return new UsersDatabase().findAll()
+                .filter(user -> user.getName().equals(name))
+                .flatMap(user -> user.getFractions().stream())
+                .map(Fraction::decimal)
+                .toList();
     }
 
     @Override
