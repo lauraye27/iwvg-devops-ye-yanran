@@ -1,6 +1,7 @@
 package es.upm.miw.iwvg_devops.rest.code;
 
 import es.upm.miw.iwvg_devops.code.Fraction;
+import es.upm.miw.iwvg_devops.code.UsersDatabase;
 import org.junit.jupiter.api.Test;
 import java.util.List;
 
@@ -73,5 +74,13 @@ public class FractionTest {
     @Test
     void testFindDecimalFractionByUserName() {
         assertEquals(List.of(0.0, -0.0, 0.0), new Fraction().findDecimalFractionByUserName("Antonio"));
+    }
+
+    @Test
+    void testFindHighestFraction() {
+        Fraction expected = new Fraction(2, 1);
+        Fraction actual = new Fraction().findHighestFraction();
+        assertEquals(expected.getNumerator(), actual.getNumerator());
+        assertEquals(expected.getDenominator(), actual.getDenominator());
     }
 }

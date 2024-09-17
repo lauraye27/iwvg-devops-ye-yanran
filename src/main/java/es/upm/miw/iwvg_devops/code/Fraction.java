@@ -1,5 +1,6 @@
 package es.upm.miw.iwvg_devops.code;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -82,6 +83,14 @@ public class Fraction {
                 .flatMap(user -> user.getFractions().stream())
                 .map(Fraction::decimal)
                 .toList();
+    }
+
+    public Fraction findHighestFraction() {
+        return new UsersDatabase().findAll()
+                .flatMap(user -> user.getFractions().stream())
+                .filter(fraction -> fraction.getDenominator() != 0)
+                .max(Comparator.comparingDouble(Fraction::decimal))
+                .orElse(null);
     }
 
     @Override
