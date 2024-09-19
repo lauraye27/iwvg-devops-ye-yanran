@@ -1,13 +1,12 @@
 package es.upm.miw.iwvg_devops.rest.code;
 
 import es.upm.miw.iwvg_devops.code.Fraction;
-import es.upm.miw.iwvg_devops.code.UsersDatabase;
 import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class FractionTest {
+class FractionTest {
 
     @Test
     void testDecimal() {
@@ -69,6 +68,14 @@ public class FractionTest {
         Fraction fraction2 = new Fraction(1,2);
 
         assertEquals(1.0, fraction.divide(fraction2), 10e-5);
+    }
+
+    @Test
+    void testDivideByZero() {
+        Fraction fraction = new Fraction(1, 2);
+        Fraction fraction2 = new Fraction(0,2);
+
+        assertThrows(ArithmeticException.class, () -> fraction.divide(fraction2));
     }
 
     @Test
