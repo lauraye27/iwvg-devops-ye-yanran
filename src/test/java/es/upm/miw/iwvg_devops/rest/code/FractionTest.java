@@ -9,9 +9,48 @@ import static org.junit.jupiter.api.Assertions.*;
 class FractionTest {
 
     @Test
+    void testDefaultConstructor() {
+        Fraction fraction = new Fraction();
+        assertEquals(1, fraction.getNumerator());
+        assertEquals(1, fraction.getDenominator());
+    }
+
+    @Test
+    void testGetNumerator() {
+        Fraction fraction = new Fraction(1, 2);
+        assertEquals(1, fraction.getNumerator());
+    }
+
+    @Test
+    void testSetNumerator() {
+        Fraction fraction = new Fraction(1, 2);
+        fraction.setNumerator(10);
+        assertEquals(10, fraction.getNumerator());
+    }
+
+    @Test
+    void testGetDenominator() {
+        Fraction fraction = new Fraction(1, 2);
+        assertEquals(2, fraction.getDenominator());
+    }
+
+    @Test
+    void testSetDenominator() {
+        Fraction fraction = new Fraction(1, 2);
+        fraction.setDenominator(10);
+        assertEquals(10, fraction.getDenominator());
+    }
+
+    @Test
     void testDecimal() {
         Fraction fraction = new Fraction(1,2);
         assertEquals(0.5, fraction.decimal(), 10e-5);
+    }
+
+    @Test
+    void testDecimalForNegativeFraction() {
+        Fraction fraction = new Fraction(-1, 2);
+        assertEquals(-0.5, fraction.decimal(), 10e-5);
     }
 
     @Test
@@ -89,5 +128,13 @@ class FractionTest {
         Fraction actual = new Fraction().findHighestFraction();
         assertEquals(expected.getNumerator(), actual.getNumerator());
         assertEquals(expected.getDenominator(), actual.getDenominator());
+    }
+
+    @Test
+    void testToString() {
+        Fraction fraction = new Fraction(1, 2);
+        String expected = "Fraction{numerator=1, denominator=2}";
+
+        assertEquals(expected, fraction.toString());
     }
 }

@@ -2,7 +2,6 @@ package es.upm.miw.iwvg_devops.code;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class User {
     private String id;
@@ -67,7 +66,7 @@ public class User {
                         .anyMatch(Fraction::isImproper))
                 .map(User::getName)
                 .distinct()
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public List<String> findUserIdBySomeProperFraction() {
@@ -75,7 +74,7 @@ public class User {
                 .filter(user -> user.getFractions().stream()
                         .anyMatch(Fraction::isProper))
                 .map(User::getId)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override

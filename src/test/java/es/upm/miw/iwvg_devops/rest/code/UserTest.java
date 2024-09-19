@@ -19,6 +19,44 @@ class UserTest {
     }
 
     @Test
+    void testGetId() {
+        assertEquals("001", user.getId());
+    }
+
+    @Test
+    void testGetName() {
+        assertEquals("Laura", user.getName());
+    }
+
+    @Test
+    void testSetName() {
+        User user1 = new User("002", "Eva", "Garcia", new ArrayList<>());
+        user1.setName("Isabella");
+        assertEquals("Isabella", user1.getName());
+    }
+
+    @Test
+    void testGetFamilyName() {
+        assertEquals("Ye", user.getFamilyName());
+    }
+
+    @Test
+    void testSetFamilyName() {
+        User user1 = new User("002", "Eva", "Garcia", new ArrayList<>());
+        user1.setFamilyName("Benito");
+        assertEquals("Benito", user1.getFamilyName());
+    }
+
+    @Test
+    void testSetFractions() {
+        List<Fraction> fractions = List.of(new Fraction(1, 2), new Fraction(3, 4));
+        user.setFractions(fractions);
+
+        assertEquals(2, user.getFractions().size());
+        assertEquals(fractions, user.getFractions());
+    }
+
+    @Test
     void testAddFraction() {
         Fraction fraction = new Fraction(1,2);
         user.addFraction(fraction);
