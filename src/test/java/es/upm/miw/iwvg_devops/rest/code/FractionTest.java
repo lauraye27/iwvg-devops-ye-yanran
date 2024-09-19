@@ -25,6 +25,7 @@ class FractionTest {
     void testSetNumerator() {
         Fraction fraction = new Fraction(1, 2);
         fraction.setNumerator(10);
+
         assertEquals(10, fraction.getNumerator());
     }
 
@@ -38,6 +39,7 @@ class FractionTest {
     void testSetDenominator() {
         Fraction fraction = new Fraction(1, 2);
         fraction.setDenominator(10);
+
         assertEquals(10, fraction.getDenominator());
     }
 
@@ -86,6 +88,22 @@ class FractionTest {
     }
 
     @Test
+    void testIsEquivalentNegative() {
+        Fraction fraction = new Fraction(-1, 2);
+        Fraction fraction2 = new Fraction(-2, 4);
+
+        assertTrue(fraction.isEquivalent(fraction2));
+    }
+
+    @Test
+    void testIsEquivalentFalse() {
+        Fraction fraction = new Fraction(1, 3);
+        Fraction fraction2 = new Fraction(2, 3);
+
+        assertFalse(fraction.isEquivalent(fraction2));
+    }
+
+    @Test
     void testAdd() {
         Fraction fraction = new Fraction(1, 2);
         Fraction fraction2 = new Fraction(2,4);
@@ -94,11 +112,27 @@ class FractionTest {
     }
 
     @Test
+    void testAddByZero() {
+        Fraction fraction = new Fraction(1, 2);
+        Fraction fraction2 = new Fraction(1, 0);
+
+        assertThrows(ArithmeticException.class, () -> fraction.add(fraction2));
+    }
+
+    @Test
     void testMultiply() {
         Fraction fraction = new Fraction(1, 2);
         Fraction fraction2 = new Fraction(1,2);
 
         assertEquals(0.25, fraction.multiply(fraction2), 10e-5);
+    }
+
+    @Test
+    void testMultiplyByZero() {
+        Fraction fraction = new Fraction(1, 2);
+        Fraction fraction2 = new Fraction(1, 0);
+
+        assertThrows(ArithmeticException.class, () -> fraction.multiply(fraction2));
     }
 
     @Test
@@ -126,6 +160,7 @@ class FractionTest {
     void testFindHighestFraction() {
         Fraction expected = new Fraction(2, 1);
         Fraction actual = new Fraction().findHighestFraction();
+
         assertEquals(expected.getNumerator(), actual.getNumerator());
         assertEquals(expected.getDenominator(), actual.getDenominator());
     }
