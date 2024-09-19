@@ -2,7 +2,6 @@ package es.upm.miw.iwvg_devops.rest.code;
 
 import es.upm.miw.iwvg_devops.code.Fraction;
 import es.upm.miw.iwvg_devops.code.User;
-import es.upm.miw.iwvg_devops.code.UsersDatabase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +10,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class UserTest {
+class UserTest {
     private User user;
 
     @BeforeEach

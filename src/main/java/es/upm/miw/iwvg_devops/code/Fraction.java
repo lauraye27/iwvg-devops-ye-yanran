@@ -2,11 +2,11 @@ package es.upm.miw.iwvg_devops.code;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class Fraction {
     private int numerator;
     private int denominator;
+    private static final String DIVISION_BY_ZERO_ERROR = "Indeterminate: division by 0";
 
     public Fraction(int numerator, int denominator) {
         this.numerator = numerator;
@@ -53,7 +53,12 @@ public class Fraction {
 
     public double add(Fraction fraction2) {
         double res;
-        double resDenominator = this.denominator * fraction2.getDenominator();
+        double resDenominator = this.denominator * (double) fraction2.getDenominator();
+
+        if (resDenominator == 0) {
+            throw new ArithmeticException(DIVISION_BY_ZERO_ERROR);
+        }
+
         double firstNumeratorFraction = (resDenominator / this.denominator) * this.numerator;
         double secondNumeratorFraction = (resDenominator / fraction2.getDenominator()) * fraction2.getNumerator();
         double resNumerator = firstNumeratorFraction + secondNumeratorFraction;
@@ -63,16 +68,26 @@ public class Fraction {
 
     public double multiply(Fraction fraction2) {
         double res;
-        double resNumerator = this.numerator * fraction2.getNumerator();
-        double resDenominator = this.denominator * fraction2.getDenominator();
+        double resNumerator = this.numerator * (double) fraction2.getNumerator();
+        double resDenominator = this.denominator * (double) fraction2.getDenominator();
+
+        if (resDenominator == 0) {
+            throw new ArithmeticException(DIVISION_BY_ZERO_ERROR);
+        }
+
         res = resNumerator / resDenominator;
         return res;
     }
 
     public double divide(Fraction fraction2) {
         double res;
-        double resNumerator = this.numerator * fraction2.getDenominator();
-        double resDenominator = this.denominator * fraction2.getNumerator();
+        double resNumerator = this.numerator * (double) fraction2.getDenominator();
+        double resDenominator = this.denominator * (double) fraction2.getNumerator();
+
+        if (resDenominator == 0) {
+            throw new ArithmeticException(DIVISION_BY_ZERO_ERROR);
+        }
+
         res = resNumerator / resDenominator;
         return res;
     }
